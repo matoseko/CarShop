@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <h1>Product detail</h1>
+
+
+    <div class="card" style="width: 18rem;">
+        <img src="{{ item.image.url }}" class="card-img-top" alt="Tu ma byt obrazok">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Title:{{ item.item_name }}</p>
+            <a href="{% url 'add_to_cart' item.id %}" class="btn btn-primary">Buy</a>
+        </div>
+    </div>
+
+{% endblock %}
