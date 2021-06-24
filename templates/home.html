@@ -19,11 +19,30 @@
 
 
 
-    <ul>
-        {% for item in item_list%}
-            <li>
-                <a href="{% url 'viewer:product' pk=item.id %}">{{ item.item_name }}</a>  ({{ item.produced }}) - {{ item.price }} CZK
-            </li>
-        {% endfor %}
-    </ul>
+
+
+
+            <div class="container-fluid ">
+                {% for item in item_list%}
+            <div class="row row-cols-1 row-cols-md-3" style="display: inline-flex">
+
+
+            <div class="col mb-4">
+                <div class="card">
+                    <img src="{{ item.image.url }}" class="card-img-top" alt="Tu ma byt obrazok" style="height: 250px;width: 350px">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <a href="{% url 'viewer:product' pk=item.id %}">{{ item.item_name }}</a>
+                        <p class="card-text">Price: {{ item.price }} CZK</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+                {% endfor %}
+        </div>
+
+
 {% endblock %}

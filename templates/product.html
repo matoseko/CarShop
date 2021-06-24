@@ -4,21 +4,44 @@
     <h1>Product detail</h1>
 
 
-    <div class="card" style="width: 18rem;">
-        <img src="{{ item.image.url }}" class="card-img-top" alt="Tu ma byt obrazok">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Title:{{ item.item_name }}</p>
-            <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p" >Add to cart
-                <i class="fas fa-shopping-cart ml-1"></i>
-            </a>
-            <br>
-            <br>
-            {{ object.get_quantity_in_chart }}
-            <a href="{{ object.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p" >Remove From cart
-                <i class="fas fa-trash ml-1"></i>
-            </a>
+    <div class="card mb-3" style="max-width: 1700px;padding: 20px">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="{{ item.image.url }}" class="card-img" alt="..." style="margin: 10px; margin-top: 30px">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.item_name }}</h5>
+                    <p class="card-text">Transmission: {{ item.transmission }}</p>
+                    <p class="card-text">Fuel: {{ item.fuel }}</p>
+                    <p class="card-text">Color: {{ item.color }}</p>
+                    <p>
+                        <a class="card-text" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Description
+                        </a>
+
+                    </p>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            {{ item.description}}
+                        </div>
+                    </div>
+                    <p class="card-text">Price: {{ item.price }} CZK</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+                <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p" style="margin-left: 20px" >Add to cart
+                    <i class="fa fa-shopping-cart ml-1"></i>
+                </a>
+                <br>
+                <br>
+                {{ object.get_quantity_in_chart }}
+                <a href="{{ object.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p" style="margin-left: 20px" >Remove From cart
+                    <i class="fa fa-trash ml-1"></i>
+                </a>
+            </div>
         </div>
     </div>
+
+
 
 {% endblock %}
