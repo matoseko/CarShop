@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Q
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
@@ -288,16 +288,17 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('viewer:home')
     permission_required = 'viewer.add_product'
 
-class ProductUpdateView(PermissionRequiredMixin,LoginRequiredMixin, UpdateView):
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'form.html'
     model = Item
     form_class = ItemModelForm
     success_url = reverse_lazy('viewer:home')
     permission_required = 'viewer.update_product'
 
-class ProductDeleteView(PermissionRequiredMixin,LoginRequiredMixin, DeleteView):
-    template_name = 'product_confirm_delete'
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
+    template_name = 'form.html'
     model = Item
+    form_class = ItemModelForm
     success_url = reverse_lazy('viewer:home')
     permission_required = 'viewer.delete_product'
 
@@ -309,3 +310,6 @@ class SignUpView(CreateView):
     template_name = 'form.html'
     form_class = UserCreationForm
     success_url = reverse_lazy('viewer:home')
+
+def contact(request):
+    return render(request, 'contact.html', {})

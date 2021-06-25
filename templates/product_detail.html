@@ -9,7 +9,7 @@
         <div class="card-body">
             <h5 class="card-title">Card title</h5>
             <p class="card-text">Title:{{ item.item_name }}</p>
-            <a href="{% url 'add_to_cart' item.id %}" class="btn btn-primary">Buy</a>
+            <a href="{% url 'viewer:delete' %}" class="btn btn-primary">Buy</a>
         </div>
     </div>
 

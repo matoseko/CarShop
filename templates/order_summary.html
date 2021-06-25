@@ -33,9 +33,9 @@
 
                             </td>
                             <td>
-                                <a href="{% url 'viewer:reduce-quantity-item' order_item.item.pk %}"><i class="fas fa-minus mr-2"></i></a>
+                                <a href="{% url 'viewer:reduce-quantity-item' order_item.item.pk %}"><i class="fa fa-minus mr-2"></i></a>
                                 {{ order_item.quantity }}
-                                <a href="{% url 'viewer:add-to-cart' order_item.item.pk %}"><i class="fas fa-plus ml-2"></i></a>
+                                <a href="{% url 'viewer:add-to-cart' order_item.item.pk %}"><i class="fa fa-plus ml-2"></i></a>
                             </td>
                             <td>
                                 {% if order_item.item.discount_price %}
@@ -45,7 +45,7 @@
                                     {{ order_item.get_total_item_price}} CZK
                                 {% endif %}
                                 <a href="{% url 'viewer:remove-from-cart' order_item.item.pk %}">
-                                    <i class="fas fa-trash float-right text-danger"></i>
+                                    <i class="fa fa-trash float-right text-danger"></i>
                                 </a>
 
                             </td>
