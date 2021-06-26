@@ -1,0 +1,13 @@
+
+
+    <h3> My cars</h3>
+
+    <ol>
+        {% for item in mycar_list %}
+            <li>
+                <a href="{% url 'viewer:product' pk=item.id %}">{{ item.item_name }}</a> ({{ item.produced }}) - {{ item.price }} CZK
+            </li>
+        {% endfor %}
+    </ol>
+
+

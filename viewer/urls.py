@@ -5,7 +5,7 @@ from EshopCar import settings
 from viewer import views
 from viewer.views import HomeView, ProductView, OrderSummaryView, CheckoutView, PaymentView, add_to_cart, \
     remove_from_cart, reduce_quantity_item, ProductCreateView, ProductUpdateView, ProductDeleteView, CarbrandListView, \
-    search_product, ProductDetailView, SignUpView
+    search_product, ProductDetailView, SignUpView, MyCarListView
 
 app_name = 'viewer'
 
@@ -25,7 +25,9 @@ urlpatterns = [
     path('search/', search_product, name='search'),
     path('<int:pk>/', ProductDetailView.as_view(), name='products_detail'),
     path('accounts/sign-up/', SignUpView.as_view(), name='sign_up'),
-    path('contact', views.contact, name='contact')
+    path('contact/', views.contact, name='contact'),
+    path('profile/<username>/<int:user_id>/', MyCarListView.as_view(), name='mycar_list'),
+    path('profile/<username>/', views.user_profile, name='user_profile'),
 ]
 
 if settings.DEBUG:

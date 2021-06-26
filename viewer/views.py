@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.contrib.auth.views import redirect_to_login
 from django.db.models import Q
 from django.contrib import messages
@@ -318,3 +319,23 @@ class SignUpView(CreateView):
 
 def contact(request):
     return render(request, 'contact.html', {})
+
+class MyCarListView(ListView):
+    template_name = "mycar_list.html"
+    context_object_name = "mycar_list"
+
+    def get_queryset(self):
+        return Item.objects.filter(user_id=self.kwargs['user_id'])
+
+#User profile
+
+def user_profile(request, username):
+    user = User.objects.get(username=username)
+    context = {
+        "user": user,
+        "mycar_list": Item.objects.filter(user_id=user.id),
+
+    }
+
+
+    return render(request, 'user_profile.html', context)
