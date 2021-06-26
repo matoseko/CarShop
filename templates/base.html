@@ -100,6 +100,11 @@
         <!-- Jumbotron -->
         {% block content %}{% endblock %}
 
+        <a class="weatherwidget-io" href="https://forecast7.com/cs/50d0814d44/prague/" data-label_1="PRAHA" data-days="5" data-theme="retro-sky" >PRAHA</a>
+        <script>
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+        </script>
+        <br>
         {% include "footer.html" %}
 
 
