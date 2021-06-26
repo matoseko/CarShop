@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import CharField, ForeignKey, DO_NOTHING, ImageField, DateField
 from django.shortcuts import reverse
@@ -38,6 +39,8 @@ class Item(models.Model):
     description = models.TextField()
     image = ImageField(upload_to='images/')
     discount_price = models.FloatField(blank=True, null=True)
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
 
     def __str__(self):
         return self.item_name

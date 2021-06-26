@@ -29,7 +29,7 @@
 
             <div class="col mb-4">
                 <div class="card">
-                    <img src="{{ item.image.url }}" class="card-img-top" alt="Tu ma byt obrazok" style="height: 250px;width: 350px">
+                    <a href="{% url 'viewer:product' pk=item.id %}"><img src="{{ item.image.url }}" class="card-img-top" alt="Tu ma byt obrazok" style="height: 250px;width: 350px"></a>
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>
                         <a href="{% url 'viewer:product' pk=item.id %}">{{ item.item_name }}</a>

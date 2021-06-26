@@ -1,12 +1,14 @@
 from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.views import redirect_to_login
 from django.db.models import Q
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, View, CreateView, UpdateView, DeleteView
 from django.utils import timezone
 from .forms import CheckoutForm, ItemModelForm
@@ -301,6 +303,9 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
     form_class = ItemModelForm
     success_url = reverse_lazy('viewer:home')
     permission_required = 'viewer.delete_product'
+
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)
 
 class ProductDetailView(DetailView):
     model = Item
