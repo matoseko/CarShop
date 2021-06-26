@@ -34,11 +34,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'viewer:contact' %}">Contact</a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'viewer:create' %}">New insertion </a>
+                    <a class="nav-link" href="{% url 'viewer:create' %}">Sell your car </a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -61,8 +59,8 @@
             <div class="nav-item dropdown">
                 {% if user.is_authenticated %}
                     <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown">
-                        {% if user.first_name %}{{ user.first_name}} <br> Prihlaseny
-                            {% else %}{{ user.username}} <br> Prihlaseny
+                        Welcome {% if user.first_name %}{{ user.first_name}}
+                            {% else %}{{ user.username}} <br>
                         {% endif %}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
@@ -70,7 +68,7 @@
                         <a class="dropdown-item text-right" href="#">Change Password</a>
                     </div>
                 {% else %}
-                    <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown">Neprihlaseny</a>
+                    <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown">Please log in</a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item text-right" href="{% url 'login' %}">Login</a>
                         <a class="dropdown-item text-right" href="{% url 'viewer:sign_up' %}">Sign Up</a>
@@ -78,7 +76,7 @@
                 {% endif %}
             </div>
         </div>
-        <div><b span style="color: black;"><a href="{% url 'viewer:order-summary' %}" class="button"> Košík </b></a>
+        <div><b span style="color: black;"><a href="{% url 'viewer:order-summary' %}" class="button" style="color: white"> Basket </b><i class="fa fa-shopping-cart ml-1"></i></a>
         </div>
     </div>
 </nav>
