@@ -5,8 +5,8 @@ from django.contrib.auth.views import redirect_to_login
 from django.db.models import Q
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
@@ -298,15 +298,18 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('viewer:home')
     permission_required = 'viewer.update_product'
 
-class ProductDeleteView(LoginRequiredMixin, DeleteView):
+class ProductDeleteView(LoginRequiredMixin,DeleteView):
     template_name = 'form.html'
     model = Item
     form_class = ItemModelForm
     success_url = reverse_lazy('viewer:home')
     permission_required = 'viewer.delete_product'
 
+
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user)
+
+
 
 class ProductDetailView(DetailView):
     model = Item

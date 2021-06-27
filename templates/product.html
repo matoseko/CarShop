@@ -39,10 +39,15 @@
                     <i class="fa fa-trash ml-1"></i>
                 </a>
                 {% if user.is_authenticated %}
+                {% if user == item.user %}
+
                 <a href="{% url 'viewer:delete' pk=item.pk %}" class="btn btn-danger btn-md my-0 p" style="margin-left: 20px" >Delete
                     <i class="fa fa-delete ml-1"></i>
                 </a>
+
                 {% endif %}
+                {% endif %}
+
             </div>
         </div>
     </div>
